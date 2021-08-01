@@ -1,8 +1,9 @@
 h3 {
     color: #fa8072;
     font-size: xx-large;
-    margin-left: 50px;
+    margin-left: 15px;
     margin-bottom: 50px;
+    margin-top: 75px;
     font-size: 50px;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
     text-align: left;
@@ -21,10 +22,11 @@ h2 {
 ul li{
     list-style-type:disc;
     margin-left: 50px;
-    margin-top: 10px;
-    margin-top: 10px;
-    font-size: 15px;
+    margin-top: 15px;
+    margin-bottom: 15px;
+    font-size: 20px;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
+    color: #1d9b8e;
   }
   li{
 display: ruby;
