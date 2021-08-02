@@ -45,3 +45,22 @@ div{
     font-family:Georgia, 'Times New Roman', Times, serif;
     margin-top: 100px;
 }
+
+table {
+  width:100%;
+}
+table, th, td {
+  border: 5px solid #6A1B9A;
+  border-collapse: collapse;
+}
+th, td {
+  padding: 15px;
+}
+
+tr {
+ background-color: #E65100;
+}
+th {
+  background-color: #1565C0;
+  color: white;
+}
