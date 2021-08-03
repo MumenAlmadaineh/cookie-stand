@@ -18,9 +18,6 @@ function WorkingLocation(minNumberOfCustomers, maxNumberOfCustomers, locationNam
   objectArray.push(this);
 }
 
-// console.log(objectArray);
-
-
 WorkingLocation.prototype.getNumberOfCustomers = function (min, max) {
   let numberOfCustomers = Math.floor(Math.random() * (max - min + 1) + min);
   return numberOfCustomers;
