@@ -2,13 +2,11 @@
 
 let valueOfsalesFile = document.getElementById('sales');
 
-let workingHours = ['6:00 AM', '7:00 AM', '8:00 AM', '9:00 AM', '10:00 AM', '11:00 AM', '12:00 PM', '1:00 PM', '2:00 PM', '3:00 PM', '4:00 PM', '5:00 PM', '6:00 PM', '7:00 PM','Location Totals'];
+let workingHours = ['6:00 AM', '7:00 AM', '8:00 AM', '9:00 AM', '10:00 AM', '11:00 AM', '12:00 PM', '1:00 PM', '2:00 PM', '3:00 PM', '4:00 PM', '5:00 PM', '6:00 PM', '7:00 PM'];
 
-let tableBottomArray = [];
+let totalOfCookiesArray = [];
 
-// let finalTotalArray = [];
-
-// let totalOfTimeArray = [];
+let objectArray = [];
 
 function WorkingLocation(minNumberOfCustomers, maxNumberOfCustomers, locationName, averageOfCookies) {
   this.minNumberOfCustomers = minNumberOfCustomers;
@@ -17,7 +15,10 @@ function WorkingLocation(minNumberOfCustomers, maxNumberOfCustomers, locationNam
   this.totalOfCookies = 0;
   this.averageOfCookies = averageOfCookies;
   this.simulatedAmountsOfCookies = [];
+  objectArray.push(this);
 }
+
+// console.log(objectArray);
 
 
 WorkingLocation.prototype.getNumberOfCustomers = function (min, max) {
@@ -47,11 +48,10 @@ WorkingLocation.prototype.render = function () {
   let trElement = document.createElement('tr');
   tabElement.appendChild(trElement);
 
-  tableBottomArray.push(this.simulatedAmountsOfCookies)[0];
 
-  let tdElement1 = document.createElement('td');
-  trElement.appendChild(tdElement1);
-  tdElement1.textContent = this.locationName;
+  let thElement1 = document.createElement('th');
+  trElement.appendChild(thElement1);
+  thElement1.textContent = this.locationName;
 
 
   for (let i = 0; i < this.simulatedAmountsOfCookies.length; i++) {
@@ -62,10 +62,8 @@ WorkingLocation.prototype.render = function () {
   let tdElement3 = document.createElement('td');
   tdElement3.textContent = this.totalOfCookies;
   trElement.appendChild(tdElement3);
-  // let resultTotal = this.totalOfCookies[0];
-  // finalTotalArray.push(resultTotal);
+  totalOfCookiesArray.push (this.totalOfCookies)[0];
 };
-
 
 
 let seattle = new WorkingLocation(23, 65, 'Seattle', 6.3, []);
@@ -85,49 +83,58 @@ for (let i = 0; i < workingLocationArray.length; i++) {
   workingLocationArray[i].render();
 }
 
-
-let seattleArray = tableBottomArray[0];
-let tokyoArray = tableBottomArray[1];
-let dubaiArray = tableBottomArray[2];
-let parisArray = tableBottomArray[3];
-let limaArray = tableBottomArray[4];
-
-
-function tableTopAndBottom() {
+function tableTop() {
   let idTableTop = document.getElementById('tableTop');
 
   let tableTopElement = document.createElement('table');
   idTableTop.appendChild(tableTopElement);
-
   let trTopElement = document.createElement('tr');
   tableTopElement.appendChild(trTopElement);
-
-
-
-  let idTableBottom = document.getElementById('tableBottom');
-
-  let tableBottomElement = document.createElement('table');
-  idTableBottom.appendChild(tableBottomElement);
-
-  let trBottomlement = document.createElement('tr');
-  tableBottomElement.appendChild(trBottomlement);
-
-
+  workingHours.unshift('');
+  workingHours.push('Total of daily total');
   for (let i = 0; i < workingHours.length; i++) {
     let th1Element = document.createElement('th');
     trTopElement.appendChild(th1Element);
     th1Element.textContent = [workingHours[i]];
-
-    let totalOfTime = seattleArray[i] + tokyoArray[i] + dubaiArray[i] + parisArray[i] + limaArray[i];
-    // totalOfTimeArray.push(totalOfTime);
-    let th2Element = document.createElement('th');
-    trBottomlement.appendChild(th2Element);
-    th2Element.textContent = totalOfTime;
   }
-  // let finalTotal = totalOfTimeArray + finalTotalArray;
-  // let th4Element = document.createElement('th');
-  // trBottomlement.appendChild(th4Element);
-  // th4Element.textContent = finalTotal;
+  workingHours.shift();
+  workingHours.pop();
 }
 
-tableTopAndBottom();
+tableTop();
+
+
+function tableBottom() {
+  let idTableBottom = document.getElementById('tableBottom');
+
+  let tableBottomElement = document.createElement('table');
+  idTableBottom.appendChild(tableBottomElement);
+  let trBottomlement = document.createElement('tr');
+  tableBottomElement.appendChild(trBottomlement);
+
+  let totalElement = document.createElement('th');
+  trBottomlement.appendChild(totalElement);
+  totalElement.textContent = 'total';
+
+
+  for(let i = 0; i < workingHours.length; i++){
+    let totalColom = 0;
+    for(let m = 0; m < objectArray.length; m++){
+      totalColom += objectArray[m].simulatedAmountsOfCookies[i];
+    }
+    let th2Element = document.createElement('th');
+    trBottomlement.appendChild(th2Element);
+    th2Element.textContent = totalColom;
+  }
+
+  let valueOfTotal = totalOfCookiesArray;
+  let total = valueOfTotal.reduce(function(accumulator, currentValue)
+  { return accumulator + currentValue; }, 0);
+
+  let totalOfTotal = document.createElement('th');
+  trBottomlement.appendChild(totalOfTotal);
+  totalOfTotal.textContent = total;
+}
+
+tableBottom();
+
