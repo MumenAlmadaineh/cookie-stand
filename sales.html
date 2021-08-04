@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -8,14 +9,38 @@
     <link rel="stylesheet" href="./css/reset.css">
     <link rel="stylesheet" href="./css/style.css">
 </head>
+
 <body>
-    <a href="index.html">Back to index.html</a>
-    <header id="tableTop" ></header>
-    <main>
-    <section id="sales" >
-    </section>
+    <header>
+    </header>
+    <main id="sales">
+        <section>
+            <a href="index.html">Back to index.html</a>
+        </section>
+        <section>
+            <form id="locationForm">
+                <fieldset>
+                    <legend>Add a new location</legend>
+                    <label for="nameOflocation">location name</label>
+                    <input type="text" name="" id="nameOflocation" required>
+
+                    <label for="minCustomersNumber">Min number</label>
+                    <input type="number" name="" id="minCustomersNumber" required>
+
+                    <label for="maxCustomersNumber">Max number</label>
+                    <input type="number" name="" id="maxCustomersNumber" required>
+
+                    <label for="cookiesAverage">Average</label>
+                    <input type="number" name="" id="cookiesAverage" required>
+
+                    <input type="submit" value="Add this location to table">
+                </fieldset>
+            </form>
+        </section>
     </main>
-    <footer id="tableBottom" ></footer>
+    <footer>
+    </footer>
     <script src="js/app.js"></script>
 </body>
+
 </html>
